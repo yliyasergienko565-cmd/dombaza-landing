@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Домбаза — всё для дома и ремонта</title>
+<meta name="description" content="Домбаза — инструменты, сантехника, электрика и отделочные материалы с доставкой по всей России." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ECEEF0;
+    --surface: #FFFFFF;
+    --ink: #1B2733;
+    --blue: #1E4FA3;
+    --blue-deep: #163D80;
+    --orange: #E2661C;
+    --orange-deep: #C2530F;
+    --steel: #626B74;
+    --line: #D2D6DA;
+
+    --font-display: "Unbounded", "Arial Black", sans-serif;
+    --font-body: "Manrope", -apple-system, "Segoe UI", sans-serif;
+
+    --radius: 6px;
+    --container: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, svg { display: block; max-width: 100%; }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.08;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  section { padding: clamp(56px, 9vw, 104px) 0; }
+
+  :focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* --- Header ------------------------------------------------------------ */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(236, 238, 240, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .logo span { color: var(--blue); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: #fff;
+    box-shadow: 0 2px 0 var(--orange-deep);
+  }
+
+  .btn-primary:hover { background: var(--orange-deep); }
+  .btn-primary:active { transform: translateY(1px); box-shadow: none; }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 10px 20px;
+  }
+
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+  .site-header .btn-primary { padding: 10px 18px; font-size: 14px; }
+
+  /* --- Hero ---------------------------------------------------------------- */
+  .hero {
+    position: relative;
+    padding-top: clamp(72px, 12vw, 128px);
+    padding-bottom: clamp(24px, 4vw, 48px);
+    overflow: hidden;
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-position: center top;
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 96%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 96%);
+  }
+
+  .hero-inner { position: relative; }
+
+  .hero .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 9vw, 96px);
+    color: var(--ink);
+  }
+
+  .hero h1 .accent { color: var(--blue); }
+
+  .hero .lede {
+    margin: 24px 0 0;
+    max-width: 46ch;
+    font-size: clamp(17px, 2vw, 20px);
+    color: var(--steel);
+  }
+
+  .hero .cta-row {
+    margin-top: 36px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* --- Section headers ------------------------------------------------------ */
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .section-head h2 { font-size: clamp(28px, 4vw, 38px); }
+
+  .section-head .kicker {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .section-head p { color: var(--steel); max-width: 52ch; margin: 10px 0 0; }
+
+  /* --- Categories ------------------------------------------------------------ */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .category-card {
+    background: var(--surface);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .category-card .icon {
+    width: 40px;
+    height: 40px;
+    color: var(--blue);
+  }
+
+  .category-card h3 { font-size: 18px; }
+
+  .category-card p {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--steel);
+  }
+
+  @media (max-width: 860px) {
+    .categories-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .categories-grid { grid-template-columns: 1fr; }
+  }
+
+  /* --- Why us ------------------------------------------------------------------ */
+  .why-us {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .why-us .section-head .kicker { color: var(--orange); }
+  .why-us .section-head h2 { color: #fff; }
+  .why-us .section-head p { color: #A9B2BA; }
+
+  .facts-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .fact {
+    flex: 1 1 220px;
+    padding: 28px 24px 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.16);
+  }
+
+  .fact:not(:last-child) {
+    border-right: 1px solid rgba(255,255,255,0.16);
+    padding-right: 24px;
+  }
+
+  .fact .num {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--orange);
+    font-variant-numeric: tabular-nums;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .fact .label { font-size: 14.5px; color: #C7CDD2; }
+
+  @media (max-width: 700px) {
+    .fact { flex: 1 1 100%; border-right: none !important; padding-right: 0 !important; }
+  }
+
+  /* --- Delivery tape (signature element) ----------------------------------------- */
+  .tape-wrap {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(24px, 4vw, 40px);
+  }
+
+  .tape-hint {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--steel);
+    margin-bottom: 28px;
+  }
+
+  .tape-hint svg { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
+
+  .tape {
+    display: flex;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .tape-zone {
+    position: relative;
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 152px;
+    cursor: default;
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent, transparent 19px,
+      var(--line) 19px, var(--line) 20px
+    );
+    background-position: top;
+    background-repeat: repeat-x;
+    background-size: 20px 10px;
+  }
+
+  /* ширина сегментов растёт с расстоянием/сроком доставки — это несёт смысл, не декор */
+  .tape-zone[data-zone="1"] { flex: 1.1; }
+  .tape-zone[data-zone="2"] { flex: 1.4; }
+  .tape-zone[data-zone="3"] { flex: 2.2; }
+
+  .tape-zone:hover,
+  .tape-zone:focus-visible {
+    transform: translateY(-4px);
+    border-color: var(--blue);
+    background-color: #fff;
+    box-shadow: 0 10px 24px -12px rgba(27, 39, 51, 0.35);
+  }
+
+  .tape-zone .zone-name {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .tape-zone .zone-price {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--blue);
+    font-variant-numeric: tabular-nums;
+    margin-top: 10px;
+  }
+
+  .tape-zone .zone-days {
+    font-size: 13.5px;
+    color: var(--steel);
+    margin-top: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 700px) {
+    .tape { flex-direction: column; }
+    .tape-zone[data-zone] { flex: none; }
+  }
+
+  /* --- Form ------------------------------------------------------------------------ */
+  .form-section .wrap { max-width: 640px; }
+
+  .order-form {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(28px, 5vw, 44px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--steel);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 16px;
+    padding: 13px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    background: #fff;
+  }
+
+  .field textarea { resize: vertical; min-height: 90px; }
+
+  .order-form .btn-primary {
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .form-note {
+    font-size: 13px;
+    color: var(--steel);
+    margin-top: -8px;
+  }
+
+  #formStatus {
+    display: none;
+    font-weight: 700;
+    color: var(--blue-deep);
+    background: #E8F0FB;
+    border: 1px solid #BFD4EF;
+    border-radius: 4px;
+    padding: 14px 16px;
+    font-size: 14.5px;
+  }
+
+  #formStatus.visible { display: block; }
+
+  /* --- Footer ---------------------------------------------------------------------- */
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+  }
+
+  .site-footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--steel);
+  }
+
+  .site-footer .logo { font-size: 16px; }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="#top">Дом<span>база</span></a>
+      <a class="btn btn-primary" href="#order">Оставить заявку</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <span class="eyebrow">Магазин товаров для дома и ремонта</span>
+        <h1>Дом<span class="accent">база</span></h1>
+        <p class="lede">Всё для дома и ремонта — с доставкой по всей России. Инструменты, сантехника, электрика и отделочные материалы в одном месте.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#order">Оставить заявку →</a>
+          <a class="btn btn-ghost" href="#delivery">Стоимость доставки</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Что у нас есть</span>
+            <h2>Четыре основных отдела</h2>
+          </div>
+          <p>Каждая категория — с реальным ассортиментом под конкретную задачу, а не для галочки.</p>
+        </div>
+
+        <div class="categories-grid">
+          <article class="category-card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/>
+            </svg>
+            <h3>Инструменты</h3>
+            <p>Ручной и электроинструмент для стройки и ремонта — от отвёртки до перфоратора.</p>
+          </article>
+
+          <article class="category-card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.5c2.8 3.6 5 6.8 5 9.3a5 5 0 0 1-10 0c0-2.5 2.2-5.7 5-9.3z"/>
+            </svg>
+            <h3>Сантехника</h3>
+            <p>Смесители, трубы, фитинги и всё для водоснабжения — квартира, дом, дача.</p>
+          </article>
+
+          <article class="category-card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>
+            </svg>
+            <h3>Электрика</h3>
+            <p>Кабель, розетки, автоматы и освещение — от щитка до последней лампочки.</p>
+          </article>
+
+          <article class="category-card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21 21 3M7 21l5-5M3 17l5-5"/>
+              <path d="M16 4l4 4-3 3-4-4z"/>
+            </svg>
+            <h3>Отделочные материалы</h3>
+            <p>Смеси, плитка, ламинат, краска и всё, чем доводят ремонт до финала.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-us">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Почему Домбаза</span>
+            <h2>Работаем так, чтобы к нам возвращались</h2>
+          </div>
+        </div>
+
+        <div class="facts-row">
+          <div class="fact">
+            <span class="num">5 лет</span>
+            <span class="label">на рынке — знаем, что нужно на стройке и в ремонте</span>
+          </div>
+          <div class="fact">
+            <span class="num">1–2 дня</span>
+            <span class="label">доставка по Москве и области</span>
+          </div>
+          <div class="fact">
+            <span class="num">Без вопросов</span>
+            <span class="label">принимаем возврат, если что-то не подошло</span>
+          </div>
+          <div class="fact">
+            <span class="num">Скидки</span>
+            <span class="label">для постоянных клиентов при повторных заказах</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Доставка</span>
+            <h2>Сколько это будет стоить вам</h2>
+          </div>
+          <p>Три зоны — чем дальше, тем шире полоса на ленте ниже. Наведите или коснитесь своей зоны.</p>
+        </div>
+
+        <div class="tape-wrap">
+          <div class="tape-hint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18M3 8v8h18V8M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
+            Найдите свою зону на ленте доставки
+          </div>
+          <div class="tape">
+            <div class="tape-zone" data-zone="1" tabindex="0">
+              <span class="zone-name">Москва и область</span>
+              <div>
+                <span class="zone-price">300 ₽</span>
+                <span class="zone-days">1–2 дня</span>
+              </div>
+            </div>
+            <div class="tape-zone" data-zone="2" tabindex="0">
+              <span class="zone-name">Санкт-Петербург</span>
+              <div>
+                <span class="zone-price">500 ₽</span>
+                <span class="zone-days">2–3 дня</span>
+              </div>
+            </div>
+            <div class="tape-zone" data-zone="3" tabindex="0">
+              <span class="zone-name">Остальная Россия</span>
+              <div>
+                <span class="zone-price">от 700 ₽</span>
+                <span class="zone-days">3–7 дней</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="form-section" id="order">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">Заявка</span>
+            <h2>Оставьте контакты — перезвоним</h2>
+          </div>
+        </div>
+
+        <form class="order-form" id="orderForm">
+          <div class="field">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" placeholder="Как к вам обращаться" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" placeholder="+7 ___ ___-__-__" required autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="orderDetails">Что хотите заказать</label>
+            <textarea id="orderDetails" name="order" placeholder="Например: перфоратор и мешок цемента"></textarea>
+          </div>
+          <p class="form-note">Свяжемся в течение рабочего дня, чтобы уточнить заказ и стоимость доставки.</p>
+          <button class="btn btn-primary" type="submit">Отправить заявку</button>
+          <div id="formStatus" role="status">Заявка отправлена — мы вам перезвоним.</div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="logo" href="#top">Дом<span style="color:var(--blue)">база</span></a>
+      <span>Товары для дома и ремонта · Доставка по России</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Заявки пока никуда не отправляются — форма только на фронтенде,
+      // бэкенд для приёма заявок в этой задаче не запрашивался.
+      var status = document.getElementById('formStatus');
+      status.classList.add('visible');
+      this.querySelector('button[type="submit"]').setAttribute('disabled', 'true');
+    });
+  </script>
+
+</body>
+</html>
