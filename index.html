@@ -203,17 +203,16 @@
   .hero-visual {
     aspect-ratio: 1 / 0.86;
     border-radius: 28px;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55), transparent 55%),
-      linear-gradient(135deg, var(--orange) 0%, #FF8A3D 55%, var(--yellow) 100%);
+    background: linear-gradient(135deg, var(--orange) 0%, #FF8A3D 55%, var(--yellow) 100%);
     box-shadow: 0 24px 48px -20px rgba(255, 106, 0, 0.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
   }
 
-  .hero-visual svg { width: 62%; height: 62%; }
+  .hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .hero-badge {
     position: absolute;
@@ -297,19 +296,38 @@
   }
 
   .category-card__image {
+    position: relative;
     aspect-ratio: 4 / 3;
     border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .category-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .category-card__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 6px 14px -6px rgba(22, 32, 43, 0.35);
   }
 
-  .category-card__image svg { width: 46%; height: 46%; }
+  .category-card__badge svg { width: 18px; height: 18px; }
 
-  .category-card--tools .category-card__image { background: linear-gradient(150deg, #FFDCC0, #FFF1E4); }
-  .category-card--plumbing .category-card__image { background: linear-gradient(150deg, #CFE6FF, #EAF4FF); }
-  .category-card--electrical .category-card__image { background: linear-gradient(150deg, #FFEBB0, #FFF8E1); }
-  .category-card--finishing .category-card__image { background: linear-gradient(150deg, #CDF0DF, #EAFBF3); }
+  .category-card--tools .category-card__badge { color: var(--orange-dark); }
+  .category-card--plumbing .category-card__badge { color: var(--blue-dark); }
+  .category-card--electrical .category-card__badge { color: #B8860B; }
+  .category-card--finishing .category-card__badge { color: #178A5A; }
 
   .category-card h3 { font-size: 18px; }
 
@@ -587,14 +605,8 @@
         </div>
 
         <div class="hero-visual-wrap">
-          <div class="hero-visual" aria-hidden="true">
-            <!-- Заглушка-иллюстрация вместо фото: коробка с доставкой. Заменить на реальное фото/баннер, когда будет доступна генерация изображений. -->
-            <svg viewBox="0 0 100 100" fill="none">
-              <path d="M15 38 L50 22 L85 38 L85 74 L50 90 L15 74 Z" fill="#fff" opacity="0.95"/>
-              <path d="M15 38 L50 54 L85 38" stroke="#FF6A00" stroke-width="3" stroke-linejoin="round" fill="none"/>
-              <path d="M50 54 L50 90" stroke="#FF6A00" stroke-width="3" fill="none"/>
-              <path d="M32.5 30 L67.5 46" stroke="#FFD9B8" stroke-width="3" stroke-linecap="round"/>
-            </svg>
+          <div class="hero-visual">
+            <img src="images/hero-banner.jpg" alt="Инструменты и материалы для ремонта: шуруповёрт, плитка, валик, разводной ключ" width="1100" height="821" loading="eager" />
           </div>
           <div class="hero-badge">
             <span class="dot"></span>
@@ -617,9 +629,12 @@
         <div class="categories-grid">
           <article class="category-card category-card--tools">
             <div class="category-card__image">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/>
-              </svg>
+              <img src="images/category-tools.jpg" alt="Аккумуляторный шуруповёрт и набор гаечных ключей" width="800" height="597" loading="lazy" />
+              <span class="category-card__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/>
+                </svg>
+              </span>
             </div>
             <h3>Инструменты</h3>
             <p>Ручной и электроинструмент для стройки и ремонта — от отвёртки до перфоратора.</p>
@@ -627,9 +642,12 @@
 
           <article class="category-card category-card--plumbing">
             <div class="category-card__image">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 3.5c2.8 3.6 5 6.8 5 9.3a5 5 0 0 1-10 0c0-2.5 2.2-5.7 5-9.3z"/>
-              </svg>
+              <img src="images/category-plumbing.jpg" alt="Хромированный смеситель для кухни с каплей воды" width="800" height="597" loading="lazy" />
+              <span class="category-card__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3.5c2.8 3.6 5 6.8 5 9.3a5 5 0 0 1-10 0c0-2.5 2.2-5.7 5-9.3z"/>
+                </svg>
+              </span>
             </div>
             <h3>Сантехника</h3>
             <p>Смесители, трубы, фитинги и всё для водоснабжения — квартира, дом, дача.</p>
@@ -637,9 +655,12 @@
 
           <article class="category-card category-card--electrical">
             <div class="category-card__image">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>
-              </svg>
+              <img src="images/category-electrical.jpg" alt="Удлинитель на катушке, выключатель и автомат защиты" width="800" height="597" loading="lazy" />
+              <span class="category-card__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>
+                </svg>
+              </span>
             </div>
             <h3>Электрика</h3>
             <p>Кабель, розетки, автоматы и освещение — от щитка до последней лампочки.</p>
@@ -647,10 +668,13 @@
 
           <article class="category-card category-card--finishing">
             <div class="category-card__image">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#178A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21 21 3M7 21l5-5M3 17l5-5"/>
-                <path d="M16 4l4 4-3 3-4-4z"/>
-              </svg>
+              <img src="images/category-finishing.jpg" alt="Керамическая плитка, банка краски и валик" width="800" height="597" loading="lazy" />
+              <span class="category-card__badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 21 21 3M7 21l5-5M3 17l5-5"/>
+                  <path d="M16 4l4 4-3 3-4-4z"/>
+                </svg>
+              </span>
             </div>
             <h3>Отделочные материалы</h3>
             <p>Смеси, плитка, ламинат, краска и всё, чем доводят ремонт до финала.</p>
