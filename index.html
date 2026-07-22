@@ -7,24 +7,28 @@
 <meta name="description" content="Домбаза — инструменты, сантехника, электрика и отделочные материалы с доставкой по всей России." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #ECEEF0;
-    --surface: #FFFFFF;
-    --ink: #1B2733;
-    --blue: #1E4FA3;
-    --blue-deep: #163D80;
-    --orange: #E2661C;
-    --orange-deep: #C2530F;
-    --steel: #626B74;
-    --line: #D2D6DA;
+    --bg: #FFFFFF;
+    --bg-soft: #F5F8FC;
+    --ink: #16202B;
+    --muted: #5B6B7A;
+    --line: #E7ECF1;
 
-    --font-display: "Unbounded", "Arial Black", sans-serif;
-    --font-body: "Manrope", -apple-system, "Segoe UI", sans-serif;
+    --orange: #FF6A00;
+    --orange-dark: #E85A00;
+    --blue: #0B6FDB;
+    --blue-dark: #0857AD;
+    --yellow: #FFC229;
+    --green: #1FAE6E;
 
-    --radius: 6px;
-    --container: 1120px;
+    --font-display: "Fredoka", "Arial Rounded MT Bold", sans-serif;
+    --font-body: "Nunito", -apple-system, "Segoe UI", sans-serif;
+
+    --radius: 20px;
+    --radius-sm: 12px;
+    --container: 1160px;
   }
 
   * { box-sizing: border-box; }
@@ -33,7 +37,7 @@
 
   body {
     margin: 0;
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
     font-family: var(--font-body);
     line-height: 1.55;
@@ -52,16 +56,16 @@
 
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.08;
+    font-weight: 600;
+    line-height: 1.1;
     margin: 0;
     text-wrap: balance;
   }
 
-  section { padding: clamp(56px, 9vw, 104px) 0; }
+  section { padding: clamp(48px, 8vw, 96px) 0; }
 
   :focus-visible {
-    outline: 3px solid var(--orange);
+    outline: 3px solid var(--blue);
     outline-offset: 2px;
   }
 
@@ -75,8 +79,8 @@
     position: sticky;
     top: 0;
     z-index: 20;
-    background: rgba(236, 238, 240, 0.92);
-    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
 
@@ -84,30 +88,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   .logo {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 22px;
     letter-spacing: 0.01em;
     text-decoration: none;
     color: var(--ink);
   }
 
-  .logo span { color: var(--blue); }
+  .logo span { color: var(--orange); }
 
   .btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-family: var(--font-body);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 15px;
-    padding: 12px 22px;
-    border-radius: var(--radius);
+    padding: 13px 26px;
+    border-radius: 999px;
     border: none;
     cursor: pointer;
     text-decoration: none;
@@ -117,76 +121,128 @@
   .btn-primary {
     background: var(--orange);
     color: #fff;
-    box-shadow: 0 2px 0 var(--orange-deep);
+    box-shadow: 0 6px 16px -4px rgba(255, 106, 0, 0.5);
   }
 
-  .btn-primary:hover { background: var(--orange-deep); }
-  .btn-primary:active { transform: translateY(1px); box-shadow: none; }
+  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); box-shadow: 0 2px 8px -2px rgba(255, 106, 0, 0.5); }
 
-  .btn-ghost {
-    background: transparent;
-    border: 1.5px solid var(--ink);
+  .btn-outline {
+    background: #fff;
+    border: 2px solid var(--line);
     color: var(--ink);
-    padding: 10px 20px;
+    padding: 11px 24px;
   }
 
-  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
 
-  .site-header .btn-primary { padding: 10px 18px; font-size: 14px; }
+  .site-header .btn-primary { padding: 11px 22px; font-size: 14px; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn { transition: transform 140ms ease, background-color 140ms ease, box-shadow 140ms ease, border-color 140ms ease, color 140ms ease; }
+  }
 
   /* --- Hero ---------------------------------------------------------------- */
   .hero {
     position: relative;
-    padding-top: clamp(72px, 12vw, 128px);
-    padding-bottom: clamp(24px, 4vw, 48px);
+    padding-top: clamp(48px, 9vw, 96px);
+    padding-bottom: clamp(48px, 8vw, 88px);
+    background: linear-gradient(155deg, #FFF4E8 0%, #FFFFFF 45%, #EAF3FF 100%);
     overflow: hidden;
-    background-color: var(--paper);
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 32px 32px;
-    background-position: center top;
-    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 96%);
-    mask-image: linear-gradient(to bottom, black 55%, transparent 96%);
   }
 
-  .hero-inner { position: relative; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: center;
+  }
 
   .hero .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
+    font-weight: 800;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--blue);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    padding: 6px 14px;
+    color: var(--orange-dark);
+    background: #FFF1E2;
+    border: 1.5px solid #FFDAB2;
+    padding: 7px 16px;
     border-radius: 999px;
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
 
   .hero h1 {
-    font-size: clamp(44px, 9vw, 96px);
+    font-size: clamp(38px, 6.4vw, 62px);
     color: var(--ink);
   }
 
-  .hero h1 .accent { color: var(--blue); }
+  .hero h1 .accent { color: var(--orange); }
 
   .hero .lede {
-    margin: 24px 0 0;
+    margin: 20px 0 0;
     max-width: 46ch;
-    font-size: clamp(17px, 2vw, 20px);
-    color: var(--steel);
+    font-size: clamp(17px, 2vw, 19px);
+    color: var(--muted);
+    font-weight: 600;
   }
 
   .hero .cta-row {
-    margin-top: 36px;
+    margin-top: 32px;
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
+  }
+
+  .hero-visual-wrap {
+    position: relative;
+  }
+
+  .hero-visual {
+    aspect-ratio: 1 / 0.86;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.55), transparent 55%),
+      linear-gradient(135deg, var(--orange) 0%, #FF8A3D 55%, var(--yellow) 100%);
+    box-shadow: 0 24px 48px -20px rgba(255, 106, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-visual svg { width: 62%; height: 62%; }
+
+  .hero-badge {
+    position: absolute;
+    bottom: -18px;
+    left: -18px;
+    background: #fff;
+    border-radius: 999px;
+    padding: 14px 22px;
+    box-shadow: 0 12px 28px -10px rgba(22, 32, 43, 0.28);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 14.5px;
+    transform: rotate(-4deg);
+  }
+
+  .hero-badge .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 860px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual-wrap { max-width: 340px; margin: 0 auto; }
+    .hero-badge { left: 50%; transform: translateX(-50%) rotate(-3deg); }
   }
 
   /* --- Section headers ------------------------------------------------------ */
@@ -199,51 +255,69 @@
     flex-wrap: wrap;
   }
 
-  .section-head h2 { font-size: clamp(28px, 4vw, 38px); }
+  .section-head h2 { font-size: clamp(26px, 4vw, 36px); }
 
   .section-head .kicker {
     font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-weight: 800;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--orange);
+    color: var(--blue);
     display: block;
     margin-bottom: 10px;
   }
 
-  .section-head p { color: var(--steel); max-width: 52ch; margin: 10px 0 0; }
+  .section-head p { color: var(--muted); max-width: 52ch; margin: 10px 0 0; font-weight: 600; }
 
   /* --- Categories ------------------------------------------------------------ */
   .categories-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    overflow: hidden;
+    gap: 20px;
   }
 
   .category-card {
-    background: var(--surface);
-    padding: 32px 24px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-shadow: 0 10px 24px -18px rgba(22, 32, 43, 0.35);
   }
 
-  .category-card .icon {
-    width: 40px;
-    height: 40px;
-    color: var(--blue);
+  @media (prefers-reduced-motion: no-preference) {
+    .category-card { transition: transform 160ms ease, box-shadow 160ms ease; }
   }
+
+  .category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 32px -16px rgba(22, 32, 43, 0.28);
+  }
+
+  .category-card__image {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .category-card__image svg { width: 46%; height: 46%; }
+
+  .category-card--tools .category-card__image { background: linear-gradient(150deg, #FFDCC0, #FFF1E4); }
+  .category-card--plumbing .category-card__image { background: linear-gradient(150deg, #CFE6FF, #EAF4FF); }
+  .category-card--electrical .category-card__image { background: linear-gradient(150deg, #FFEBB0, #FFF8E1); }
+  .category-card--finishing .category-card__image { background: linear-gradient(150deg, #CDF0DF, #EAFBF3); }
 
   .category-card h3 { font-size: 18px; }
 
   .category-card p {
     margin: 0;
     font-size: 14.5px;
-    color: var(--steel);
+    color: var(--muted);
+    font-weight: 600;
   }
 
   @media (max-width: 860px) {
@@ -254,55 +328,64 @@
   }
 
   /* --- Why us ------------------------------------------------------------------ */
-  .why-us {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .why-us .section-head .kicker { color: var(--orange); }
-  .why-us .section-head h2 { color: #fff; }
-  .why-us .section-head p { color: #A9B2BA; }
+  .why-us { background: var(--bg-soft); }
 
   .facts-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    border-top: 1px solid rgba(255,255,255,0.16);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
 
   .fact {
-    flex: 1 1 220px;
-    padding: 28px 24px 28px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.16);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    box-shadow: 0 10px 24px -18px rgba(22, 32, 43, 0.3);
   }
 
-  .fact:not(:last-child) {
-    border-right: 1px solid rgba(255,255,255,0.16);
-    padding-right: 24px;
+  .fact .fact-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
   }
+
+  .fact .fact-icon svg { width: 22px; height: 22px; color: #fff; }
+
+  .fact:nth-child(1) .fact-icon { background: var(--orange); }
+  .fact:nth-child(2) .fact-icon { background: var(--blue); }
+  .fact:nth-child(3) .fact-icon { background: var(--green); }
+  .fact:nth-child(4) .fact-icon { background: #C2469A; }
 
   .fact .num {
     font-family: var(--font-display);
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--orange);
-    font-variant-numeric: tabular-nums;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
-  .fact .label { font-size: 14.5px; color: #C7CDD2; }
+  .fact .label { font-size: 14px; color: var(--muted); font-weight: 600; }
 
-  @media (max-width: 700px) {
-    .fact { flex: 1 1 100%; border-right: none !important; padding-right: 0 !important; }
+  @media (max-width: 860px) {
+    .facts-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .facts-row { grid-template-columns: 1fr; }
   }
 
   /* --- Delivery tape (signature element) ----------------------------------------- */
   .tape-wrap {
-    background: var(--surface);
+    background: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: clamp(24px, 4vw, 40px);
+    box-shadow: 0 14px 32px -22px rgba(22, 32, 43, 0.35);
   }
 
   .tape-hint {
@@ -310,8 +393,9 @@
     align-items: center;
     gap: 10px;
     font-size: 14px;
-    color: var(--steel);
-    margin-bottom: 28px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 26px;
   }
 
   .tape-hint svg { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
@@ -319,21 +403,20 @@
   .tape {
     display: flex;
     align-items: stretch;
-    gap: 6px;
+    gap: 12px;
   }
 
   .tape-zone {
     position: relative;
-    background: var(--paper);
-    border: 1.5px solid var(--line);
-    border-radius: 4px;
+    background: var(--bg-soft);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-sm);
     padding: 20px 18px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 152px;
+    min-height: 150px;
     cursor: default;
-    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
     background-image: repeating-linear-gradient(
       90deg,
       transparent, transparent 19px,
@@ -344,6 +427,10 @@
     background-size: 20px 10px;
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    .tape-zone { transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background-color 160ms ease; }
+  }
+
   /* ширина сегментов растёт с расстоянием/сроком доставки — это несёт смысл, не декор */
   .tape-zone[data-zone="1"] { flex: 1.1; }
   .tape-zone[data-zone="2"] { flex: 1.4; }
@@ -352,29 +439,30 @@
   .tape-zone:hover,
   .tape-zone:focus-visible {
     transform: translateY(-4px);
-    border-color: var(--blue);
+    border-color: var(--orange);
     background-color: #fff;
-    box-shadow: 0 10px 24px -12px rgba(27, 39, 51, 0.35);
+    box-shadow: 0 14px 28px -14px rgba(255, 106, 0, 0.35);
   }
 
   .tape-zone .zone-name {
-    font-weight: 700;
+    font-weight: 800;
     font-size: 15px;
   }
 
   .tape-zone .zone-price {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 600;
     font-size: clamp(22px, 3vw, 30px);
-    color: var(--blue);
+    color: var(--orange);
     font-variant-numeric: tabular-nums;
     margin-top: 10px;
   }
 
   .tape-zone .zone-days {
     font-size: 13.5px;
-    color: var(--steel);
+    color: var(--muted);
     margin-top: 4px;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
   }
 
@@ -384,23 +472,25 @@
   }
 
   /* --- Form ------------------------------------------------------------------------ */
+  .form-section { background: var(--bg-soft); }
   .form-section .wrap { max-width: 640px; }
 
   .order-form {
-    background: var(--surface);
+    background: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: clamp(28px, 5vw, 44px);
     display: flex;
     flex-direction: column;
     gap: 20px;
+    box-shadow: 0 14px 32px -22px rgba(22, 32, 43, 0.35);
   }
 
   .field label {
     display: block;
     font-size: 13.5px;
-    font-weight: 700;
-    color: var(--steel);
+    font-weight: 800;
+    color: var(--muted);
     margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -410,18 +500,19 @@
   .field textarea {
     width: 100%;
     font-family: var(--font-body);
+    font-weight: 600;
     font-size: 16px;
-    padding: 13px 14px;
-    border: 1.5px solid var(--line);
-    border-radius: 4px;
-    background: var(--paper);
+    padding: 13px 16px;
+    border: 2px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--bg-soft);
     color: var(--ink);
   }
 
   .field input:focus,
   .field textarea:focus {
     outline: none;
-    border-color: var(--blue);
+    border-color: var(--orange);
     background: #fff;
   }
 
@@ -434,17 +525,18 @@
 
   .form-note {
     font-size: 13px;
-    color: var(--steel);
+    color: var(--muted);
+    font-weight: 600;
     margin-top: -8px;
   }
 
   #formStatus {
     display: none;
-    font-weight: 700;
-    color: var(--blue-deep);
-    background: #E8F0FB;
-    border: 1px solid #BFD4EF;
-    border-radius: 4px;
+    font-weight: 800;
+    color: #0F6B3E;
+    background: #E7F8EF;
+    border: 1.5px solid #B7E9CC;
+    border-radius: var(--radius-sm);
     padding: 14px 16px;
     font-size: 14.5px;
   }
@@ -454,7 +546,7 @@
   /* --- Footer ---------------------------------------------------------------------- */
   .site-footer {
     border-top: 1px solid var(--line);
-    padding: 32px 0;
+    padding: 28px 0;
   }
 
   .site-footer .wrap {
@@ -464,10 +556,11 @@
     flex-wrap: wrap;
     gap: 12px;
     font-size: 13.5px;
-    color: var(--steel);
+    color: var(--muted);
+    font-weight: 600;
   }
 
-  .site-footer .logo { font-size: 16px; }
+  .site-footer .logo { font-size: 17px; }
 </style>
 </head>
 <body>
@@ -483,12 +576,30 @@
 
     <section class="hero">
       <div class="wrap hero-inner">
-        <span class="eyebrow">Магазин товаров для дома и ремонта</span>
-        <h1>Дом<span class="accent">база</span></h1>
-        <p class="lede">Всё для дома и ремонта — с доставкой по всей России. Инструменты, сантехника, электрика и отделочные материалы в одном месте.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#order">Оставить заявку →</a>
-          <a class="btn btn-ghost" href="#delivery">Стоимость доставки</a>
+        <div>
+          <span class="eyebrow">Магазин товаров для дома и ремонта</span>
+          <h1>Дом<span class="accent">база</span></h1>
+          <p class="lede">Всё для дома и ремонта — с доставкой по всей России. Инструменты, сантехника, электрика и отделочные материалы в одном месте.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#order">Оставить заявку →</a>
+            <a class="btn btn-outline" href="#delivery">Стоимость доставки</a>
+          </div>
+        </div>
+
+        <div class="hero-visual-wrap">
+          <div class="hero-visual" aria-hidden="true">
+            <!-- Заглушка-иллюстрация вместо фото: коробка с доставкой. Заменить на реальное фото/баннер, когда будет доступна генерация изображений. -->
+            <svg viewBox="0 0 100 100" fill="none">
+              <path d="M15 38 L50 22 L85 38 L85 74 L50 90 L15 74 Z" fill="#fff" opacity="0.95"/>
+              <path d="M15 38 L50 54 L85 38" stroke="#FF6A00" stroke-width="3" stroke-linejoin="round" fill="none"/>
+              <path d="M50 54 L50 90" stroke="#FF6A00" stroke-width="3" fill="none"/>
+              <path d="M32.5 30 L67.5 46" stroke="#FFD9B8" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Доставка по всей России
+          </div>
         </div>
       </div>
     </section>
@@ -504,35 +615,43 @@
         </div>
 
         <div class="categories-grid">
-          <article class="category-card">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/>
-            </svg>
+          <article class="category-card category-card--tools">
+            <div class="category-card__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/>
+              </svg>
+            </div>
             <h3>Инструменты</h3>
             <p>Ручной и электроинструмент для стройки и ремонта — от отвёртки до перфоратора.</p>
           </article>
 
-          <article class="category-card">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3.5c2.8 3.6 5 6.8 5 9.3a5 5 0 0 1-10 0c0-2.5 2.2-5.7 5-9.3z"/>
-            </svg>
+          <article class="category-card category-card--plumbing">
+            <div class="category-card__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-dark)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3.5c2.8 3.6 5 6.8 5 9.3a5 5 0 0 1-10 0c0-2.5 2.2-5.7 5-9.3z"/>
+              </svg>
+            </div>
             <h3>Сантехника</h3>
             <p>Смесители, трубы, фитинги и всё для водоснабжения — квартира, дом, дача.</p>
           </article>
 
-          <article class="category-card">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>
-            </svg>
+          <article class="category-card category-card--electrical">
+            <div class="category-card__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>
+              </svg>
+            </div>
             <h3>Электрика</h3>
             <p>Кабель, розетки, автоматы и освещение — от щитка до последней лампочки.</p>
           </article>
 
-          <article class="category-card">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 21 21 3M7 21l5-5M3 17l5-5"/>
-              <path d="M16 4l4 4-3 3-4-4z"/>
-            </svg>
+          <article class="category-card category-card--finishing">
+            <div class="category-card__image">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#178A5A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21 21 3M7 21l5-5M3 17l5-5"/>
+                <path d="M16 4l4 4-3 3-4-4z"/>
+              </svg>
+            </div>
             <h3>Отделочные материалы</h3>
             <p>Смеси, плитка, ламинат, краска и всё, чем доводят ремонт до финала.</p>
           </article>
@@ -551,18 +670,30 @@
 
         <div class="facts-row">
           <div class="fact">
+            <div class="fact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
             <span class="num">5 лет</span>
             <span class="label">на рынке — знаем, что нужно на стройке и в ремонте</span>
           </div>
           <div class="fact">
+            <div class="fact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h13l4 4v-9h-4"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+            </div>
             <span class="num">1–2 дня</span>
             <span class="label">доставка по Москве и области</span>
           </div>
           <div class="fact">
+            <div class="fact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-3-6.3"/><path d="M20 4v5h-5"/></svg>
+            </div>
             <span class="num">Без вопросов</span>
             <span class="label">принимаем возврат, если что-то не подошло</span>
           </div>
           <div class="fact">
+            <div class="fact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"/></svg>
+            </div>
             <span class="num">Скидки</span>
             <span class="label">для постоянных клиентов при повторных заказах</span>
           </div>
@@ -645,7 +776,7 @@
 
   <footer class="site-footer">
     <div class="wrap">
-      <a class="logo" href="#top">Дом<span style="color:var(--blue)">база</span></a>
+      <a class="logo" href="#top">Дом<span style="color:var(--orange)">база</span></a>
       <span>Товары для дома и ремонта · Доставка по России</span>
     </div>
   </footer>
