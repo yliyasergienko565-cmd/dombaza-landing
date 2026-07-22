@@ -338,6 +338,25 @@
     font-weight: 600;
   }
 
+  .category-tags {
+    list-style: none;
+    margin: 2px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .category-tags li {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
   @media (max-width: 860px) {
     .categories-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -638,6 +657,11 @@
             </div>
             <h3>Инструменты</h3>
             <p>Ручной и электроинструмент для стройки и ремонта — от отвёртки до перфоратора.</p>
+            <ul class="category-tags">
+              <li>Дрели и шуруповёрты</li>
+              <li>Перфораторы</li>
+              <li>Наборы ключей</li>
+            </ul>
           </article>
 
           <article class="category-card category-card--plumbing">
@@ -651,6 +675,11 @@
             </div>
             <h3>Сантехника</h3>
             <p>Смесители, трубы, фитинги и всё для водоснабжения — квартира, дом, дача.</p>
+            <ul class="category-tags">
+              <li>Смесители и краны</li>
+              <li>Трубы и фитинги</li>
+              <li>Водонагреватели</li>
+            </ul>
           </article>
 
           <article class="category-card category-card--electrical">
@@ -664,6 +693,11 @@
             </div>
             <h3>Электрика</h3>
             <p>Кабель, розетки, автоматы и освещение — от щитка до последней лампочки.</p>
+            <ul class="category-tags">
+              <li>Кабель и провод</li>
+              <li>Автоматы и УЗО</li>
+              <li>Освещение</li>
+            </ul>
           </article>
 
           <article class="category-card category-card--finishing">
@@ -678,6 +712,11 @@
             </div>
             <h3>Отделочные материалы</h3>
             <p>Смеси, плитка, ламинат, краска и всё, чем доводят ремонт до финала.</p>
+            <ul class="category-tags">
+              <li>Плитка и керамогранит</li>
+              <li>Краски и эмали</li>
+              <li>Штукатурка и шпаклёвка</li>
+            </ul>
           </article>
         </div>
       </div>
