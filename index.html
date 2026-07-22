@@ -437,6 +437,26 @@
 
   .tape-hint svg { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
 
+  .delivery-result {
+    background: linear-gradient(135deg, var(--orange) 0%, #FF8A3D 100%);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-size: 15.5px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 24px -12px rgba(255, 106, 0, 0.45);
+  }
+
+  .delivery-result__zone,
+  .delivery-result__price,
+  .delivery-result__days {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .delivery-result__price { font-size: 19px; }
+
   .tape {
     display: flex;
     align-items: stretch;
@@ -453,7 +473,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 150px;
-    cursor: default;
+    cursor: pointer;
     background-image: repeating-linear-gradient(
       90deg,
       transparent, transparent 19px,
@@ -479,6 +499,41 @@
     border-color: var(--orange);
     background-color: #fff;
     box-shadow: 0 14px 28px -14px rgba(255, 106, 0, 0.35);
+  }
+
+  /* Выбранная зона — заливка акцентом, визуально отличается от простого hover-приподнятия */
+  .tape-zone--selected,
+  .tape-zone--selected:hover {
+    background-color: var(--orange);
+    background-image: none;
+    border-color: var(--orange-dark);
+    transform: none;
+  }
+
+  /* Специфичность (.tape-zone.tape-zone--selected = 3 класса) должна быть выше,
+     чем у базовых .tape-zone .zone-price и т.п. (2 класса) ниже по каскаду —
+     иначе базовое правило "побеждает" по порядку и текст сливается с фоном. */
+  .tape-zone.tape-zone--selected .zone-name,
+  .tape-zone.tape-zone--selected .zone-price,
+  .tape-zone.tape-zone--selected .zone-days {
+    color: #fff;
+  }
+
+  .tape-zone--selected::after {
+    content: "✓";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--orange-dark);
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .tape-zone .zone-name {
@@ -771,30 +826,36 @@
             <span class="kicker">Доставка</span>
             <h2>Сколько это будет стоить вам</h2>
           </div>
-          <p>Три зоны — чем дальше, тем шире полоса на ленте ниже. Наведите или коснитесь своей зоны.</p>
+          <p>Выберите свою зону — ниже сразу увидите цену и срок.</p>
         </div>
 
         <div class="tape-wrap">
           <div class="tape-hint">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18M3 8v8h18V8M7 8v3M11 8v3M15 8v3M19 8v3"/></svg>
-            Найдите свою зону на ленте доставки
+            Нажмите на свою зону на ленте доставки
           </div>
-          <div class="tape">
-            <div class="tape-zone" data-zone="1" tabindex="0">
+
+          <div class="delivery-result" id="deliveryResult" aria-live="polite">
+            Доставка в «<span class="delivery-result__zone">Москва и область</span>»:
+            <span class="delivery-result__price">300 ₽</span> · <span class="delivery-result__days">1–2 дня</span>
+          </div>
+
+          <div class="tape" role="group" aria-label="Выбор зоны доставки">
+            <div class="tape-zone tape-zone--selected" data-zone="1" data-price="300 ₽" data-days="1–2 дня" role="button" tabindex="0" aria-pressed="true">
               <span class="zone-name">Москва и область</span>
               <div>
                 <span class="zone-price">300 ₽</span>
                 <span class="zone-days">1–2 дня</span>
               </div>
             </div>
-            <div class="tape-zone" data-zone="2" tabindex="0">
+            <div class="tape-zone" data-zone="2" data-price="500 ₽" data-days="2–3 дня" role="button" tabindex="0" aria-pressed="false">
               <span class="zone-name">Санкт-Петербург</span>
               <div>
                 <span class="zone-price">500 ₽</span>
                 <span class="zone-days">2–3 дня</span>
               </div>
             </div>
-            <div class="tape-zone" data-zone="3" tabindex="0">
+            <div class="tape-zone" data-zone="3" data-price="от 700 ₽" data-days="3–7 дней" role="button" tabindex="0" aria-pressed="false">
               <span class="zone-name">Остальная Россия</span>
               <div>
                 <span class="zone-price">от 700 ₽</span>
@@ -853,6 +914,36 @@
       status.classList.add('visible');
       this.querySelector('button[type="submit"]').setAttribute('disabled', 'true');
     });
+
+    // Калькулятор доставки: клик/Enter/Space по зоне выбирает её и обновляет результат.
+    (function () {
+      var zones = document.querySelectorAll('.tape-zone');
+      var result = document.getElementById('deliveryResult');
+      var resultZone = result.querySelector('.delivery-result__zone');
+      var resultPrice = result.querySelector('.delivery-result__price');
+      var resultDays = result.querySelector('.delivery-result__days');
+
+      function selectZone(zone) {
+        zones.forEach(function (z) {
+          var isSelected = z === zone;
+          z.classList.toggle('tape-zone--selected', isSelected);
+          z.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+        });
+        resultZone.textContent = zone.querySelector('.zone-name').textContent;
+        resultPrice.textContent = zone.dataset.price;
+        resultDays.textContent = zone.dataset.days;
+      }
+
+      zones.forEach(function (zone) {
+        zone.addEventListener('click', function () { selectZone(zone); });
+        zone.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectZone(zone);
+          }
+        });
+      });
+    })();
   </script>
 
 </body>
